@@ -1,0 +1,72 @@
+﻿@model weLab_9.Models.Marker
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=deivce-width" />
+    <link rel="stylesheet" href="~/Bootstrap/bootstrap.css" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <br /><br /><hr />
+        @using (Html.BeginForm())
+        {
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Manufacturer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.Manufacturer, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Manufacturer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.Color,(List<SelectListItem>)ViewBag.colorList)
+                @Html.ValidationMessageFor(x => x.Color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-check">
+            @Html.RadioButtonFor(x => x.Type, "Permanent", new { @class = "form-check-input" })
+            @Html.Label("Permanent", htmlAttributes: new { @class = "form-check-label" }) &nbsp &nbsp 
+            @Html.RadioButtonFor(x => x.Type, "Temporary", new {@class = "form-check-input"})
+            @Html.Label("Temporary", htmlAttributes: new {@class = "from-check-label"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.PrdDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(x => x.PrdDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.PrdDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-dark" />
+
+            </div>
+        </div>
+    </div>
+
+
+        }
+        <p>@ViewBag.successMsg</p>
+        <hr />
+        @Html.ActionLink("Back to Main Page", "Index", "Marker", null, new { @class = "btn btn-dark", @role = "button" })
+
+    </div>
+    <br />
+</body>
+</html>

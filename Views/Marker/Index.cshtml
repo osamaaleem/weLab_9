@@ -1,0 +1,56 @@
+﻿@model IEnumerable<weLab_9.Models.Marker>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Bootstrap/bootstrap.css" type="text/css" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">MANUFACTURED BY</th>
+                    <th scope="col">COLOUR</th>
+                    <th scope="col">TYPE</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">MANUFACTUREED ON</th>
+                    <th style="text-align:center" scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var mrk in Model)
+                    {
+                        <tr>
+                            <td scope="row">@mrk.Id</td>
+                            <td>@mrk.Manufacturer</td>
+                            <td>@mrk.Color</td>
+                            <td>@mrk.Type</td>
+                            <td>@mrk.Price</td>
+                            <td>@mrk.PrdDateShort</td>
+                            <td colspan="2">
+                                <div class="btn-group" role="group">
+                                    @Html.ActionLink("Details", "Details", "Marker", new { id = mrk.Id }, new { @class = "btn btn-dark", @role = "button" })
+                                    @Html.ActionLink("Edit", "UpdateMarker", "Marker", new { id = mrk.Id }, new { @class = "btn btn-dark", @role = "button" })
+                                    @Html.ActionLink("Delete", "Delete", "Marker", new { id = mrk.Id }, new { @class = "btn btn-dark", @role = "button" })
+                                </div>
+</tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        @Html.ActionLink("Add Marker", "AddMarker", "Marker", null, new { @class = "btn btn-dark", @role = "button" })
+    </div>
+    <br />
+</body>
+</html>
